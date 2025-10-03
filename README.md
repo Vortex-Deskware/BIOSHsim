@@ -4,7 +4,6 @@ BIOSHsim is a web-based simulator designed to replicate the look, feel, and func
 
 ---
 <img width="1080" height="1080" alt="icon2" src="https://github.com/user-attachments/assets/0c68eb5e-35f6-4d3c-9805-430f08432386" />
----
 
 
 ## Features

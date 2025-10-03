@@ -1,0 +1,205 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+body {
+    background-color: #000;
+    font-family: 'Courier New', monospace;
+    /* Make it full-screen */
+    height: 100vh;
+    overflow: hidden;
+    color: #ffff00;
+    line-height: 1.2;
+    cursor: none;
+}
+.bios-container {
+    /* Make it full-screen */
+    width: 100vw;
+    height: 100vh;
+    /* Remove fixed dimensions and centering */
+    background-color: #000080;
+    border: 3px solid #ffffff;
+    position: relative;
+    overflow: hidden;
+    padding: 5px;
+    font-size: 16px; /* Increased font size */
+}
+.header {
+    color: #ffffff;
+    margin-bottom: 5px;
+    text-align: center;
+    border-bottom: 2px solid #ffffff;
+    padding: 3px 0;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+.content {
+    /* Calculate height based on header, status bar, and footer */
+    height: calc(100vh - 70px - 25px - 20px); /* Adjust footer height (20px) if needed */
+    padding: 5px;
+    display: flex;
+    flex-direction: column; /* Ensure content stacks vertically */
+}
+.main-menu {
+    display: flex;
+    height: 100%;
+}
+.main-menu-left {
+    width: 50%;
+    padding: 5px;
+    border-right: 2px solid #ffffff;
+    overflow-y: auto;
+}
+.main-menu-right {
+    width: 50%;
+    padding: 5px;
+    overflow-y: auto;
+}
+.menu-item {
+    padding: 3px 5px;
+    margin: 2px 0;
+    cursor: default;
+    position: relative;
+    transition: background-color 0.1s;
+    flex-shrink: 0; /* Prevent items from shrinking */
+    font-size: 16px; /* Increased font size */
+}
+.menu-item::before {
+    content: "►";
+    margin-right: 5px;
+    color: #ffff00;
+}
+.selected {
+    background-color: #ff0000;
+    color: #ffffff;
+}
+.footer {
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
+    left: 0;
+    padding: 0 5px;
+    color: #ffff00;
+    border-top: 2px solid #ffffff;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+}
+.status-bar {
+    position: absolute;
+    bottom: 25px;
+    width: 100%;
+    left: 0;
+    padding: 0 5px;
+    color: #ffff00;
+    text-align: center;
+    font-size: 12px;
+}
+
+/* Styles for submenu content replacing main content */
+.submenu-content {
+    display: flex;
+    height: 100%;
+    /* No need for overflow-y since we'll handle scrolling manually */
+}
+.setting-list {
+    width: 60%;
+    padding: 5px;
+    overflow-y: auto; /* Allow scrolling for long lists */
+    border-right: 2px solid #ffffff;
+}
+.setting-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 2px 5px;
+    margin: 2px 0;
+    cursor: default;
+    transition: background-color 0.1s;
+    font-size: 16px; /* Increased font size */
+}
+.setting-name {
+    width: 60%;
+    white-space: nowrap;
+}
+.setting-value {
+    width: 30%;
+    text-align: right;
+    padding-left: 10px;
+}
+.setting-value:hover {
+    background-color: #ff0000;
+    color: #ffffff;
+}
+.selected-setting {
+    background-color: #ff0000;
+    color: #ffffff;
+}
+.scrollbar {
+    width: 5%;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-right: 2px solid #ffffff;
+}
+.scroll-arrow {
+    color: #ffffff;
+    font-size: 20px;
+    margin: 5px 0;
+}
+.item-help {
+    width: 35%;
+    padding: 5px;
+    border-left: 2px solid #ffffff;
+    font-size: 16px; /* Increased font size */
+}
+.item-help-header {
+    color: #ffffff;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #ffffff;
+    padding: 3px 0;
+    font-weight: bold;
+    font-size: 16px; /* Increased font size */
+}
+.item-help-text {
+    padding: 5px;
+    line-height: 1.4;
+}
+.cursor {
+    display: inline-block;
+    width: 8px;
+    height: 16px;
+    background-color: #ffff00;
+    animation: blink 1s infinite;
+    vertical-align: middle;
+    margin-left: 2px;
+}
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+/* Styles for password input simulation */
+.password-input-row {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+}
+.password-input {
+    background-color: #000080;
+    color: #ffff00;
+    border: 1px solid #ffff00;
+    padding: 2px;
+    margin-top: 2px;
+    width: 200px; /* Set a specific width */
+}
+.confirmation-prompt {
+    padding: 20px;
+    text-align: center;
+    flex: 1; /* Take up available space */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+}

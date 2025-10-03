@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIOSHsim - Vortex Deskware</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+        body {
+            background-color: #000;
+            font-family: 'Courier New', monospace;
+            height: 100vh;
+            overflow: hidden;
+            color: #ffff00;
+            line-height: 1.2;
+            cursor: none;
+        }
+        .boot-container {
+            width: 100vw;
+            height: 100vh;
+            background-color: #000;
+            position: relative;
+            overflow: hidden;
+            padding: 5px;
+            font-size: 16px; /* Increased font size for better visibility */
+        }
+        .boot-header {
+            color: #ffffff;
+            margin-bottom: 5px;
+            text-align: center;
+            border-bottom: 2px solid #ffffff;
+            padding: 3px 0;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        .boot-content {
+            height: calc(100vh - 70px - 25px - 20px); /* Adjust footer height (20px) if needed */
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+        .boot-message {
+            text-align: left;
+            font-size: 18px;
+            margin: 5px 0;
+        }
+        .boot-footer {
+            position: absolute;
+            bottom: 5px;
+            width: 100%;
+            left: 0;
+            padding: 0 5px;
+            color: #ffff00;
+            border-top: 2px solid #ffffff;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+        }
+        .boot-status-bar {
+            position: absolute;
+            bottom: 25px;
+            width: 100%;
+            left: 0;
+            padding: 0 5px;
+            color: #ffff00;
+            text-align: center;
+            font-size: 12px;
+        }
+        .energy-star-logo {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 300px; /* Doubled size from 150px */
+            height: auto;
+            /* Removed border */
+        }
+    </style>
+</head>
+<body>
+    <div class="boot-container" id="bootContainer" tabindex="0">
+        <div class="boot-content" id="bootContent">
+            <!-- Boot messages will be added here by JS -->
+        </div>
+        <div class="boot-footer">
+            <div>DEL : SETUP</div>
+        </div>
+        <!-- Energy Star Logo Placeholder -->
+        <img src="icon2.png" alt="BIOSHsim Logo" class="energy-star-logo" onerror="this.src='image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCIgdmlld0JveD0iMCAwIDE1MCAxNTAiPjxjaXJjbGUgY3g9Ijc1IiBjeT0iNzUiIHI9IjY1IiBmaWxsPSIjMDAwMDgwIiBzdHJva2U9IiNmZmZmMDAiIHN0cm9rZS13aWR0aD0iMyIvPjxjaXJjbGUgY3g9Ijc1IiBjeT0iNzUiIHI9IjYzIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmZmMDAiIHN0cm9rZS13aWR0aD0iMyIvPjwvc3ZnPg==';">
+    </div>
+    <script>
+        const bootContainer = document.getElementById('bootContainer');
+        const bootContent = document.getElementById('bootContent');
+
+        // Define the boot sequence messages
+        const bootMessages = [
+            "BIOSHsim v1.0, A Basic Input/Output System (BIOS) Simulator written in .HTML,.CSS and .JS",
+            "Copyright (C) 2023-2025 Vortex Deskware",
+            "",
+            "AMD-K6(tm)-III/450 Processor",
+            "Memory Test : 262144K OK", // Simulate memory test
+            "",
+            "BIOSHsim Plug and Play BIOS Extension v1.0",
+            "Initialize Plug and Play Cards...",
+            "PNP Init Completed",
+            "",
+            "Trend ChipAwayVirus(R) On Guard_"
+        ];
+
+        let currentMessageIndex = 0;
+
+        // Function to add a message to the boot screen
+        function addBootMessage(message) {
+            const messageElement = document.createElement('div');
+            messageElement.className = 'boot-message';
+            messageElement.textContent = message;
+            bootContent.appendChild(messageElement);
+            // Scroll to the bottom to show the latest message
+            bootContent.scrollTop = bootContent.scrollHeight;
+        }
+
+        // Function to simulate typing each character
+        function typeMessage(message, callback) {
+            let i = 0;
+            const interval = setInterval(() => {
+                if (i <= message.length) {
+                    // Create a temporary element to hold the partially typed message
+                    const tempElement = document.createElement('div');
+                    tempElement.className = 'boot-message';
+                    tempElement.textContent = message.slice(0, i);
+                    // Replace the last message with the temporary one
+                    const lastMessage = bootContent.lastChild;
+                    if (lastMessage && lastMessage.classList.contains('boot-message')) {
+                        bootContent.replaceChild(tempElement, lastMessage);
+                    } else {
+                        bootContent.appendChild(tempElement);
+                    }
+                    i++;
+                } else {
+                    clearInterval(interval);
+                    // Add the final message
+                    addBootMessage(message);
+                    // Call the callback if provided
+                    if (callback) callback();
+                }
+            }, 50); // Adjust speed as needed
+        }
+
+        // Function to simulate the memory test counting
+        function simulateMemoryTest() {
+            const memoryTestLine = document.querySelector('.boot-message:last-child'); // Get the last message (the memory test line)
+            if (memoryTestLine) {
+                // Remove the "OK" part for simulation
+                let baseText = "Memory Test : ";
+                let currentK = 0;
+                const totalK = 262144; // 256MB
+                const increment = 1024; // Increment by 1MB at a time for faster simulation
+                const interval = setInterval(() => {
+                    currentK += increment;
+                    if (currentK >= totalK) {
+                        clearInterval(interval);
+                        memoryTestLine.textContent = baseText + totalK + "K OK";
+                    } else {
+                        memoryTestLine.textContent = baseText + currentK + "K";
+                    }
+                }, 50); // Adjust speed as needed
+            }
+        }
+
+        // Function to start the boot process
+        function startBoot() {
+            // Add the first message
+            addBootMessage(bootMessages[0]);
+            // Use setTimeout to add subsequent messages with delays
+            setTimeout(() => {
+                addBootMessage(bootMessages[1]);
+                setTimeout(() => {
+                    addBootMessage(bootMessages[2]);
+                    setTimeout(() => {
+                        addBootMessage(bootMessages[3]);
+                        setTimeout(() => {
+                            // Simulate typing for the memory test line
+                            typeMessage(bootMessages[4], () => {
+                                // Start the memory test simulation after typing is done
+                                simulateMemoryTest();
+                                setTimeout(() => {
+                                    addBootMessage(bootMessages[5]);
+                                    setTimeout(() => {
+                                        addBootMessage(bootMessages[6]);
+                                        setTimeout(() => {
+                                            addBootMessage(bootMessages[7]);
+                                            setTimeout(() => {
+                                                addBootMessage(bootMessages[8]);
+                                                setTimeout(() => {
+                                                    addBootMessage(bootMessages[9]);
+                                                    setTimeout(() => {
+                                                        addBootMessage(bootMessages[10]);
+                                                        // Final prompt
+                                                        setTimeout(() => {
+                                                            const finalPrompt = document.createElement('div');
+                                                            finalPrompt.className = 'boot-message';
+                                                            finalPrompt.innerHTML = '<span style="color: #ff0000;">Press DEL to enter SETUP</span>';
+                                                            bootContent.appendChild(finalPrompt);
+                                                            // Scroll to the bottom
+                                                            bootContent.scrollTop = bootContent.scrollHeight;
+                                                        }, 1000);
+                                                    }, 500);
+                                                }, 500);
+                                            }, 500);
+                                        }, 500);
+                                    }, 500);
+                                }, 1000);
+                            });
+                        }, 500);
+                    }, 500);
+                }, 500);
+            }, 500);
+        }
+
+        // Handle keyboard events
+        bootContainer.addEventListener('keydown', function(e) {
+            // Prevent default behavior for BIOS-like keys
+            if ([27, 112, 121, 187, 189, 89, 78].includes(e.keyCode)) {
+                e.preventDefault();
+            }
+            // Check for DEL key (keyCode 46)
+            if (e.keyCode === 46) { // DEL key
+                window.location.href = 'bios.html'; // Redirect to bios.html
+            }
+        });
+
+        // Focus the container for keyboard events
+        bootContainer.focus();
+
+        // Start the boot process when the page loads
+        startBoot();
+
+    </script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 # BIOSHsim (Basic Input/Output System HTML Simulator)
 
 BIOSHsim is a web-based simulator designed to replicate the look, feel, and functionality of classic BIOS setups from the 1990s and early 2000s (Mainly Award BIOS Setups). It provides a relatively authentic experience of navigating BIOS settings as if you were booting up an old PC.
-
+## All trademarks, logos, and brand names used in this simulator are the property of their respective owners. This simulator is a fan-made project for educational and entertainment purposes and is not affiliated with, endorsed by, or sponsored by any of the mentioned companies.
 ---
 <img width="1080" height="1080" alt="icon2" src="https://github.com/user-attachments/assets/0c68eb5e-35f6-4d3c-9805-430f08432386" />
 

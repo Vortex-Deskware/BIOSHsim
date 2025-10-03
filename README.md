@@ -62,4 +62,5 @@ boot.html
 ---
 bios.html
 <img width="2560" height="1278" alt="image" src="https://github.com/user-attachments/assets/b72107b9-9ff2-4bdd-ad2b-5696313837e0" />
+---
 

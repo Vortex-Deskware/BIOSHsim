@@ -51,3 +51,15 @@ BIOSHsim is inspired by Award BIOS, a product of Award Software International, I
 ## License
 
 This project is licensed under the Apache 2.0 - see the [LICENSE](LICENSE) file for details.
+---
+
+# Screenshots
+index.html
+<img width="2560" height="1278" alt="image" src="https://github.com/user-attachments/assets/00317369-69ef-48ba-88ad-af58aa7fd27d" />
+---
+boot.html
+<img width="2560" height="1280" alt="image" src="https://github.com/user-attachments/assets/0b3925aa-0b49-43d5-836c-040dab0e9215" />
+---
+bios.html
+<img width="2560" height="1278" alt="image" src="https://github.com/user-attachments/assets/b72107b9-9ff2-4bdd-ad2b-5696313837e0" />
+

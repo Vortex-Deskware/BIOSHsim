@@ -2,6 +2,11 @@
 
 BIOSHsim is a web-based simulator designed to replicate the look, feel, and functionality of classic BIOS setups from the 1990s and early 2000s (Mainly Award BIOS Setups). It provides a relatively authentic experience of navigating BIOS settings as if you were booting up an old PC.
 
+---
+<img width="1080" height="1080" alt="icon2" src="https://github.com/user-attachments/assets/0c68eb5e-35f6-4d3c-9805-430f08432386" />
+---
+
+
 ## Features
 
 *   **Authentic Boot Sequence:** Includes a loading screen, followed by a simulated startup/memtest screen (`boot.html`), and finally the main BIOS setup utility (`bios.html`).

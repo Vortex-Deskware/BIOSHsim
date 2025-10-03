@@ -64,6 +64,7 @@ bios.html
 <img width="2560" height="1278" alt="image" src="https://github.com/user-attachments/assets/b72107b9-9ff2-4bdd-ad2b-5696313837e0" />
 ---
 <img width="100" height="100" alt="image" src="https://github.com/user-attachments/assets/acdff709-5587-4648-8449-229650b3ae2c" />
+
 ## WebSoftPy Ver. 
 
 <img width="2560" height="1400" alt="image" src="https://github.com/user-attachments/assets/f16b49dc-2dcd-4630-86c8-ed5e4198fd75" />

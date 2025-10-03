@@ -65,4 +65,4 @@ bios.html
 ---
 ## WebSoftPy Ver.
 <img width="2560" height="1400" alt="image" src="https://github.com/user-attachments/assets/f16b49dc-2dcd-4630-86c8-ed5e4198fd75" />
----
+
